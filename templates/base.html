@@ -1,0 +1,160 @@
+{% load static %}
+{% load mptt_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+  
+ 
+  
+    <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet">
+  
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">   
+
+    <link href="{% static 'css/jquery.smartmenus.bootstrap.css' %}" rel="stylesheet">
+ 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.simpleLens.css' %}">    
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/slick.css' %}">
+ 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/nouislider.css' %}">
+ 
+    <link id="switcher" href="{% static 'css/theme-color/orange-theme.css' %}" rel="stylesheet">
+  
+    <link href="{% static 'css/sequence-theme.modern-slide-in.css' %}" rel="stylesheet" media="all">    
+ <link href="{% static 'css/style.css' %}" rel="stylesheet">  
+   <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}"> 
+   <link rel="apple-touch-icon" sizes="57x57" href="{% static 'img/apple-icon-57x57.png' %}">
+<link rel="apple-touch-icon" sizes="60x60" href="{% static 'img/apple-icon-60x60.png' %}">
+  <link rel="icon" type="image/png" sizes="48x48"  href="{% static 'img/android-icon-48x48.png' %}">
+<link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon-32x32.png' %}">
+<link rel="icon" type="image/png" sizes="96x96" href="{% static 'img/favicon-96x96.png' %}">
+<link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon-16x16.png' %}"> 
+ <link rel="manifest" href="{% static 'img/manifest.json' %}">   
+
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+   <title>{% block title %}SellorBuy {% endblock %}</title>     
+  </head>
+  <body> 
+   {% include "includes/navbar.html" %}
+   <section id="menu">
+    <div class="container">
+      <div class="menu-area">
+        
+        <div class="navbar navbar-default" role="navigation">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>          
+          </div>
+
+
+          <div class="navbar-collapse collapse">   
+                      
+            <ul class="nav navbar-nav">    
+          {% recursetree data %}            
+              <li><a href="{{node.get_absolute_url}}">{{node.title}}</a>
+              {% if not node.is_leaf_node %}
+                <ul class="dropdown-menu">                           
+                  
+                                   
+                  <li><a href="#">{{children}} </a>                                  
+                                
+                  </li>                   
+                   
+                </ul>
+                {% endif %}  
+                   {% endrecursetree %}  
+                
+              </li>
+                    
+         
+              <li><a href="#">Fashion </a></li>    
+     
+             
+           
+                      
+               <li><a href="#">Sports</a></li>
+              <li><a href="{% url 'products:secondhand' %}">Secondhand</a></li>
+              
+               
+              </li>
+            </ul>
+          
+          </div>
+        </div>
+      </div>       
+    </div>
+  </section>
+
+{% block body %}
+
+{% endblock body %}
+
+{% include "includes/footer.html" %}
+
+  <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">                      
+        <div class="modal-body">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          {% if request.user.is_authenticated %}
+                  <li ><a href="{% url 'order:order_list' %}">My Orders</a></li>
+                  <li ><a href="{% url 'account:logout' %}">Logout</a></li>
+          {% else %}
+           <h4>Login or Register</h4>
+         <div class="aa-register-now">
+              Don't have an account?<a href="{% url 'account:login' %}" class="aa-browse-btn" style ="width: 100%;border-radius: 40px;font-size: 21px;text-align: center;color:#DCDCDC">Sign in</a>
+            </div>
+            <div class="aa-register-now">
+              Create an account <a href="{% url 'account:signup' %}" class="aa-browse-btn" style ="width: 100%;border-radius: 40px;font-size: 21px;text-align: center;color:#DCDCDC">Register</a>  
+            </div>
+          {% endif %}
+      
+         
+         
+        </div>                        
+      </div>
+    </div>
+  </div>    
+
+   
+
+ 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+  <script src="{% static 'js/bootstrap.js' %}"></script>  
+
+  <script type="text/javascript" src="{% static 'js/jquery.smartmenus.js' %}"></script>
+
+  <script type="text/javascript" src="{% static 'js/jquery.smartmenus.bootstrap.js' %}"></script>  
+
+  <script src="{% static 'js/sequence.js' %}"></script>
+  <script src="{% static 'js/sequence-theme.modern-slide-in.js' %}"></script>  
+
+  <script type="text/javascript" src="{% static 'js/jquery.simpleGallery.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/jquery.simpleLens.js' %}"></script>
+
+  <script type="text/javascript" src="{% static 'js/slick.js' %}"></script>
+
+  <script type="text/javascript" src="{% static 'js/nouislider.js' %}"></script>
+
+  <script type="text/javascript" src="{% static 'js/custom.js' %}"></script> 
+
+
+
+ 
+
+ 
+  </body>
+</html>
+    </body>

@@ -1,0 +1,12 @@
+{% autoescape off %}
+
+ Hi {{ user.username }}, 
+
+Welcome to SellorBuy!
+ 
+Please click below to activate your account and complete
+your sign-up process.
+
+
+http://{{ domain }}{% url 'account:activate' uidb64=uid token=token %}
+{% endautoescape %}

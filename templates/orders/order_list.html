@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+ <section id="aa-catg-head-banner">
+   
+   <div class="aa-catg-head-banner-area" >
+     <div class="container">
+      <div class="aa-catg-head-banner-content" style="background-color: #32CD32">
+      
+      </div>
+     </div>
+   </div>
+  </section>
+
+ <section id="cart-view">
+   <div class="container">
+     <div class="row">
+       <div class="col-md-12">
+         <div class="cart-view-area">
+           <div class="cart-view-table aa-wishlist-table">
+             <form action="">
+               <div class="table-responsive">
+                
+                {% if orders %}
+                
+                
+                
+                
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th></th>
+                        <th>Order </th>
+                        <th>Status</th>
+                        
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in orders %}
+                        <br>
+                      
+                      <tr class= "table" >
+                       
+                        <td><a></a>{{order.id}}</td>                   
+                       
+                        <td>{% if order.status == "delivered" %}
+                        Delivered
+                        {% elif order.status == "Shipped" %}
+                        Shipped
+                         {% elif order.status == "refunded" %}
+                         Refunded
+                        {% endif %}</td>     
+                        
+                        
+                      </tr>
+                {% endfor %}
+                                       
+                      </tbody>
+                  </table>
+                 {% else %}
+                 You have not got orders.
+                {% endif %}
+                </div>
+             </form>             
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </section>
+
+
+{% endblock  %}

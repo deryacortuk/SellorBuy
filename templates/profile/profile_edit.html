@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+
+
+    <section id="aa-myaccount">
+   <div class="container">
+     <div class="row">
+       <div class="col-md-12">
+        <div class="aa-myaccount-area">         
+            <div class="row">
+            
+             
+                <div class="aa-myaccount-register">                 
+                 <h4 style =" text-align: center">Information Update </h4>
+                 <form   method="post" style = "width: 50%; margin: 0 auto;"class="aa-login-form" enctype="multipart/form-data">
+
+{% csrf_token %}
+
+ {{form.media}}
+{{form|crispy}} 
+                    <button type="submit" class="aa-browse-btn" style ="width: 100%;border-radius: 40px;font-size: 21px;">Update</button>                    
+                  <a href ="{% url 'profile:user' %}" class="btn btn pull-left" style="border:none;outline:none;border-radius:50px;"> Return Profile</a>
+                  </form>
+                </div>
+              
+            </div>          
+         </div>
+       </div>
+     </div>
+   </div>
+ </section>
+{% endblock body %}

@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+  <title>{% block title %}SellorBuy|Search {% endblock %}</title> 
+{% block body %}
+ <section id="aa-catg-head-banner">
+   
+   <div class="aa-catg-head-banner-area" >
+     <div class="container">
+      <div class="aa-catg-head-banner-content" style="background-color: #32CD32">
+      
+      </div>
+     </div>
+   </div>
+  </section>
+
+ <section id="cart-view">
+   <div class="container">
+     <div class="row">
+       <div class="col-md-12">
+         <div class="cart-view-area">
+           <div class="cart-view-table aa-wishlist-table">
+             <form action="">
+               <div class="table-responsive">
+                
+                {% if products %}
+                
+                                       <h3>
+ {% with results.count as total_results %}
+ Found {{ total_results }} result{{ total_results|pluralize }}
+ {% endwith %}
+ </h3> 
+                
+                
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th></th>                        
+                        <th>Product </th>
+                        <th>Description</th>
+                        <th>Price</th>
+                       
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for data in products %}
+                        <br>
+                      
+                      
+                        <td><a href="{{data.get_absolute_url}}"><img src="{{data.image.url}}" alt="img"></a></td>
+                        <td><a class="aa-cart-title" href="{% url "products:product_detail" data.slug %}">{{data.title}}</a></td>
+                        <td>{{data.description|safe|truncatewords:15|linebreaks}}</td>
+                        <td>{{data.price}}</td>                       
+                     
+                        
+                        
+                        
+                      </tr>
+                {% endfor %}
+                                       
+                      </tbody>
+                  </table>
+                 {% else %}
+                 <h2>The result is zero </h2>
+                {% endif %}
+                </div>
+             </form>             
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </section>
+{% endblock body %}

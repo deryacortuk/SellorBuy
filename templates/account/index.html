@@ -1,0 +1,384 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load mptt_tags %}
+{% block body %}
+
+ 
+   <section id="aa-slider">
+    <div class="aa-slider-area">
+      <div id="sequence" class="seq">
+        <div class="seq-screen">
+          <ul class="seq-canvas">
+              <li>
+              <div class="seq-model">
+                <img data-seq src="{% static 'img/home-products.jpg' %}" alt="home products sell or buy" />
+              </div>
+              <div class="seq-title">
+               <span data-seq>Sell or Buy Home Products</span>                
+                <h2 data-seq>Home Collection</h2>                
+                <p data-seq>If you like your decor to be one-of-a-kind, SellorBuy is the online shop for you.</p>
+                {% if not request.user.is_authenticated %}
+                 
+             
+                 <a data-seq href="{% url 'account:signup' %}" class="aa-shop-now-btn aa-secondary-btn">Shop now</a>
+                {% endif %}
+              </div>
+            </li>
+            <li>
+              <div class="seq-model">
+                <img data-seq src="{% static 'img/electronics-sellorbuy.jpg' %}" alt="electronics sell or buy" />
+              </div>
+              <div class="seq-title">
+               <span data-seq>Sell or Buy Electronics</span>                
+                <h2 data-seq>Electronics</h2>                
+                <p data-seq>Shopping for electronics just got a whole lot easier.</p>
+               {% if not request.user.is_authenticated %}
+                
+                 <a data-seq href="{% url 'account:signup' %}" class="aa-shop-now-btn aa-secondary-btn">Shop now</a>
+                {% endif %}
+              </div>
+            </li>
+            
+            
+            <li>
+              <div class="seq-model">
+                <img data-seq src="{% static 'img/sellorbuy-books.jpg' %}" alt="sellorbuy-books" />
+              </div>
+              <div class="seq-title">
+               <span data-seq>Sell or Buy Books</span>                
+                <h2 data-seq>Books</h2>                
+                <p data-seq>You can get easy access to second hand books. Find cheap used books for sale from sellers around the world.</p>
+                {% if not request.user.is_authenticated %}
+                
+                 <a data-seq href="{% url 'account:signup' %}" class="aa-shop-now-btn aa-secondary-btn">Shop now</a>
+                {% endif %}
+               
+              </div>
+            </li>                
+          </ul>
+        </div>
+        
+        <fieldset class="seq-nav" aria-controls="sequence" aria-label="Slider buttons">
+          <a type="button" class="seq-prev" aria-label="Previous"><span class="fa fa-angle-left"></span></a>
+          <a type="button" class="seq-next" aria-label="Next"><span class="fa fa-angle-right"></span></a>
+        </fieldset>
+      </div>
+    </div>
+  </section>
+
+
+   <section id="aa-popular-category">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="aa-popular-category-area">
+          
+             <ul class="nav nav-tabs aa-products-tab">
+                <li class="active"><a href="#popular" data-toggle="tab">Popular</a></li>                
+                <li><a href="#latest" data-toggle="tab">Latest</a></li>                    
+              </ul>
+          
+              <div class="tab-content">
+
+
+
+                {% if popular %}
+                <div class="tab-pane fade in active" id="popular">
+                  <ul class="aa-product-catg aa-popular-slider">
+                   
+                    
+                    {% for product in popular %}
+                            <li>
+                      <figure>
+                        <a class="aa-product-img" href="{{product.url}}"><img src="{{product.img_mid_url}}" alt="{{product.title}}"></a>
+                       
+                        <figcaption>
+                          <h4 class="aa-product-title"><a href="{{product.url}}">{{product.title}}</a></h4>
+                          <span class="aa-product-price">{{product.price}}</span><span class="aa-product-price"></span>
+                        </figcaption>
+                      </figure>                      
+                
+                     
+                    </li>
+                    
+                    {% endfor %}
+                    
+            
+                    
+                    
+                                                                                              
+                  </ul>
+                 
+                </div>
+                {% else %}
+
+                {% endif %}
+             
+            
+        {% if latest %} 
+            <div class="tab-pane fade" id="latest">
+                  <ul class="aa-product-catg aa-latest-slider">
+                   {% for product in latest  %}
+                   
+                  
+                    <li>
+                      <figure>
+                        <a class="aa-product-img" href="{{product.url}}"><img src="{{product.img_mid_url}}" alt="{{product.title}}"></a>
+                        
+                         <figcaption>
+                          <h4 class="aa-product-title"><a href="{{product.url}}">{{product.title}}</a></h4>
+                          <span class="aa-product-price">{{product.price}}</span><span class="aa-product-price"></span>
+                        </figcaption>
+                      </figure>                     
+                      
+                  
+                     
+                    </li>
+                    
+                    
+                   
+                  
+                     {% endfor %}
+                                                                                
+                  </ul>
+                   
+                </div>
+       {% else %}
+
+        {% endif %} 
+            
+                          
+              </div>
+            </div>
+            
+           
+          </div> 
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+
+ 
+ 
+  <section id="aa-banner">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">        
+          <div class="row">
+            <div class="aa-banner-area">
+            <a><img src="{% static 'img/sellorbuy-shop.jpg' %}" alt="sell or buy products"></a> 
+          
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section id="aa-product">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="aa-product-area">
+              <div class="aa-product-inner">
+               
+                 <ul class="nav nav-tabs aa-products-tab">
+                   <li><a href="#electronics" data-toggle="tab">Electronics</a></li>
+                   <li><a href="#sports" data-toggle="tab">Sports</a></li>
+                    <li class="active"><a href="#men" data-toggle="tab">Men</a></li>
+                    <li><a href="#women" data-toggle="tab">Women</a></li>                   
+                   
+                   
+                  </ul>
+                  
+                  <div class="tab-content">
+                    
+                    <div class="tab-pane fade in active" id="men">
+                      <ul class="aa-product-catg">
+                       
+                        {% for product in products  %}
+                             <li>
+                          <figure>
+                            <a class="aa-product-img" href="#"><img src="{{product.img_mid_url}}" alt="{{product.title}}"></a>
+                            <a class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                              <figcaption>
+                              <h4 class="aa-product-title"><a href="#">Polo T-Shirt</a></h4>
+                              <span class="aa-product-price">$45.50</span><span class="aa-product-price"><del>$65.50</del></span>
+                            </figcaption>
+                          </figure>                        
+                          <div class="aa-product-hvr-content">
+                            <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
+                            <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span class="fa fa-exchange"></span></a>
+                            <a href="#" data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search"></span></a>                          
+                          </div>
+                       
+                        </li>
+                        {% endfor %}
+                   
+                     
+                       
+                   
+                        
+                      </ul>
+                     <a class="aa-browse-btn" href="#">Browse all Product <span class="fa fa-long-arrow-right"></span></a>
+                    </div>
+                    
+                    <div class="tab-pane fade" id="women">
+                      <ul class="aa-product-catg">
+                        
+                         {% for product in products  %}
+                             <li>
+                          <figure>
+                            <a class="aa-product-img" href="#"><img src="{{product.img_mid_url}}" alt="{{product.title}}"></a>
+                            <a class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                              <figcaption>
+                              <h4 class="aa-product-title"><a href="#">Polo T-Shirt</a></h4>
+                              <span class="aa-product-price">$45.50</span><span class="aa-product-price"><del>$65.50</del></span>
+                            </figcaption>
+                          </figure>                        
+                          <div class="aa-product-hvr-content">
+                            <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
+                            <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span class="fa fa-exchange"></span></a>
+                            <a href="#" data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search"></span></a>                          
+                          </div>
+                       
+                        </li>
+                        {% endfor %}
+                   
+                        
+                            
+                      </ul>
+                     <a class="aa-browse-btn" href="#">Browse all Product <span class="fa fa-long-arrow-right"></span></a>
+                    </div>
+                    
+                    <div class="tab-pane fade" id="sports">
+                      <ul class="aa-product-catg">
+                       
+                        {% for product in products  %}
+                             <li>
+                          <figure>
+                            <a class="aa-product-img" href="#"><img src="{{product.img_mid_url}}" alt="{{product.title}}"></a>
+                            <a class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                              <figcaption>
+                              <h4 class="aa-product-title"><a href="#">Polo T-Shirt</a></h4>
+                              <span class="aa-product-price">$45.50</span><span class="aa-product-price"><del>$65.50</del></span>
+                            </figcaption>
+                          </figure>                        
+                          <div class="aa-product-hvr-content">
+                            <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
+                            <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span class="fa fa-exchange"></span></a>
+                            <a href="#" data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search"></span></a>                          
+                          </div>
+                       
+                        </li>
+                        {% endfor %}
+                   
+                      
+                        
+                              
+                      </ul>
+                      <a class="aa-browse-btn" href="#">Browse all Product <span class="fa fa-long-arrow-right"></span></a>
+                    </div>
+                    
+                    <div class="tab-pane fade" id="electronics">
+                       <ul class="aa-product-catg">
+                       
+                        {% for product in products  %}
+                             <li>
+                          <figure>
+                            <a class="aa-product-img" href="#"><img src="{{product.img_mid_url}}" alt="{{product.title}}"></a>
+                            <a class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                              <figcaption>
+                              <h4 class="aa-product-title"><a href="#">Polo T-Shirt</a></h4>
+                              <span class="aa-product-price">$45.50</span><span class="aa-product-price"><del>$65.50</del></span>
+                            </figcaption>
+                          </figure>                        
+                          <div class="aa-product-hvr-content">
+                            <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
+                            <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span class="fa fa-exchange"></span></a>
+                            <a href="#" data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search"></span></a>                          
+                          </div>
+                       
+                        </li>
+                        {% endfor %}
+                   
+                       
+                   
+                       
+                                    
+                      </ul>
+                     <a class="aa-browse-btn" href="#">Browse all Product <span class="fa fa-long-arrow-right"></span></a>
+                    </div>
+                  
+                  </div>
+                         
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<section id="aa-subscribe">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="aa-subscribe-area">
+            <h3>Subscribe our newsletter </h3>            
+            <form action="" class="aa-subscribe-form">
+              <input type="email" name="" id="" placeholder="Enter your Email">
+              <input type="submit" value="Subscribe">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="aa-support">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="aa-support-area">
+           
+            <div class="col-md-4 col-sm-4 col-xs-12">
+              <div class="aa-support-single">
+                <span class="fa fa-truck"></span>
+                <h4>Tracking shipping</h4>
+                
+              </div>
+            </div>
+           
+            <div class="col-md-4 col-sm-4 col-xs-12">
+              <div class="aa-support-single">
+                <span class="fa fa-clock-o"></span>
+                <h4>Fast Delivery</h4>
+                
+              </div>
+            </div>
+           
+            <div class="col-md-4 col-sm-4 col-xs-12">
+              <div class="aa-support-single">
+                <span class="fa fa-phone"></span>
+                <h4>Support 24/7</h4>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+ 
+  
+
+{% endblock body %}

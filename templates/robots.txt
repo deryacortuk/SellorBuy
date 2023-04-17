@@ -1,0 +1,6 @@
+User-Agent: *
+Allow: *
+Sitemap: https://sellorbuy.shop/sitemap.xml
+Sitemap: https://domain.com/sitemap-product.xml
+Sitemap: https://domain.com/sitemap-category.xml
+Sitemap: https://domain.com/sitemap-static.xml

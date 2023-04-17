@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+ <section id="aa-catg-head-banner">
+   
+   <div class="aa-catg-head-banner-area" >
+     <div class="container">
+      <div class="aa-catg-head-banner-content" style="background-color: #14ACCA;">
+      
+      </div>
+     </div>
+   </div>
+  </section>
+
+ <section id="cart-view">
+   <div class="container">
+     <div class="row">
+       <div class="col-md-12">
+         <div class="cart-view-area">
+           <div class="cart-view-table aa-wishlist-table">
+             <form action="">
+               <div class="table-responsive">
+                
+                {% if serializer %}
+                
+                
+                
+                
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th></th>
+                        <th>Product </th>
+                        <th>Price</th>
+                        <th>Stock Status</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for data in serializer %}
+                        <br>
+                    
+                      <tr class= "table" id ="table{{data.id}}">
+                        <td class="delete"><a class="remove" id="deleteProduct" data-id = "{{data.id}}" data-action="{% url 'products:delete' data.id %}"><fa class="fa fa-close"></fa></a></td>
+                        <td><a href="#"><img src="{{data.img_mid_url}}" alt="img"></a></td>
+                        <td><a class="aa-cart-title" href="{% url 'products:product_detail' data.slug %}">{{data.title}}</a></td>
+                        <td>{{data.price}}</td>
+                        {% if data.status == "sell" %}
+                        <td>Active</td>
+                        <td><a href="{% url "products:update" data.id %}" class="aa-add-to-cart-btn">Update</a></td>
+                        {% else %}
+                    <td>Sold Out</td>
+                        {% endif %}
+                        
+                        
+                      </tr>
+                {% endfor %}
+                                       
+                      </tbody>
+                  </table>
+                 {% else %}
+                {% endif %}
+                </div>
+             </form>             
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </section>
+ <!-- / Cart view section -->
+<script src="{% static 'js/sellorbuy/seller_products.js' %}" type="text/javascript"> </script>
+
+{% endblock  %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load rest_framework %}
+{% load static %}
+{% block body %}
+
+
+
+
+    <section id="aa-myaccount">
+   <div class="container">
+     <div class="row">
+       <div class="col-md-12">
+        <div class="aa-myaccount-area">         
+            <div class="row">
+            
+             
+                <div class="aa-myaccount-register">                 
+                 <h4 style =" text-align: center">Sell Product </h4>
+
+                 <form action = {% url 'products:sell' %}  method="post"  style = "width: 50%; margin: 0 auto;"class="aa-login-form" enctype="multipart/form-data" novalidate>
+   {% csrf_token %}
+
+    {% render_form serializer %}
+   
+
+    
+              <div>
+    <div>
+
+    </div>
+</div>
+                    <button type="submit" value="Save" class="aa-browse-btn" style ="width: 100%;border-radius: 40px;font-size: 21px;">Sell</button>                    
+                  </form>
+                </div>
+              
+            </div>          
+         </div>
+       </div>
+     </div>
+   </div>
+ </section>
+
+{% endblock body %}

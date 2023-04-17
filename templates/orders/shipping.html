@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+ <section id="aa-catg-head-banner">
+   
+   <div class="aa-catg-head-banner-area" >
+     <div class="container">
+      <div class="aa-catg-head-banner-content" style="background-color:#F2F200;">
+      
+      </div>
+     </div>
+   </div>
+  </section>
+
+ <section id="cart-view">
+   <div class="container">
+     <div class="row">
+       <div class="col-md-12">
+         <div class="cart-view-area">
+           <div class="cart-view-table aa-wishlist-table">
+             <form action="">
+               <div class="table-responsive">
+                
+               
+                
+                
+
+                
+                  <table class="table">
+                    <thead>
+                      <h2 style="text-align:center">Order Details</h2>
+                      <tr>
+                         
+                        <th>Product</th>
+                         <th>Quantity</th> 
+                        <th>Seller</th>
+                        <th>Customer </th>                       
+                        <th>Order Time</th>
+                       
+                        
+                      </tr>
+                    </thead>
+                     {% if serializer %}
+                   <tbody>
+                        {% for data in serializer %}
+                            <br>
+  
+                     
+                       <th><a href="">{{data.order_ship.title}}</a></th>
+                       <th>{{data.quantity}}</th>
+                        <th>{{data.sender_shipping.first_name}} {{data.sender_shipping.last_name}}</th>
+                        <th>{{data.recipient_shipping.first_name}} {{data.recipient_shipping.last_name}} </th>
+                        <th>{{data.order_created_at}}</th>
+                      
+                                            
+                        <th><a href="{% url 'trackshipping:detail' data.id %}">More information</a></th>
+                       
+                        
+                       
+                        
+                        
+                      </tr>
+                     {% endfor %}
+
+                                       
+                      </tbody>
+                      {% endif %}
+                  </table>
+               
+                </div>
+             </form>             
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </section>
+
+
+
+{% endblock  %}

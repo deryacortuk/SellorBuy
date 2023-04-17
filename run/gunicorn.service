@@ -1,0 +1,16 @@
+[Unit]
+Description=gunicorn daemon
+Requires=gunicorn.socket
+After=network.target
+[Service]
+Type=notify
+User=root
+Group=www-data
+RuntimeDirectory=gunicorn
+WorkingDirectory=/var/www/Opes
+ExecStart=/var/www/SellorBuy/venv/bin/gunicorn --access-logfile - --workers 4 --bind unix:/run/gunicorn.sock          SellorBuy.wsgi:application
+ExecReload=/bin/kill -s HUP $MAINPID
+KillMode=mixed
+TimeoutStopSec=5
+[Install]
+WantedBy=multi-user.target
